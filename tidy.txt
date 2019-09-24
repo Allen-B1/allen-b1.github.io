@@ -1,0 +1,3 @@
+indent: auto
+indent-with-tabs: yes
+wrap: 0
