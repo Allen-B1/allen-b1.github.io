@@ -68,8 +68,6 @@ p {
 pre {margin:0;}
 
 header {
-	position: fixed;
-	top:0;left:0;right:0;
 	padding-top: 64px;
 	padding-bottom: 64px;
 	background: #000;
@@ -79,7 +77,6 @@ main {
 	max-width: 700px;
 	padding: 16px;
 	margin: auto;
-	margin-top: 180px; /* 64 + 52(height) + 64 */
 }
 
 @media screen and (max-width: 800px) {
@@ -114,7 +111,7 @@ main {
 	}
 }
 
-.project {
+.project, .file {
 	padding: 16px;
 	border: 2px solid #fff;
 	margin-bottom: 16px;
@@ -132,8 +129,21 @@ main {
 .project .links a:not(:hover):not(:focus) {
 	border-bottom: 1px dotted;
 }
+.file {
+	position: relative;
+}
+.filename {
+	position: absolute;
+	right: 16px; top: 0;
+	padding: 4px 16px;
+	border: 2px solid #fff;
+	border-width: 0 2px 2px 2px;
+	border-radius: 0 0 4px 4px;
+	background: #fff;
+	color: #000;
+}
 
 table {
-	border: 2px solid;
+	border: 0;
 	padding: 16px;
 }
