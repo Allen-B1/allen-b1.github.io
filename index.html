@@ -1,28 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.2.0">
-	<title>allen-b1</title>
-	<meta charset="utf-8">
-	<meta property="og:title" content="Home">
-	<meta name="application-name" property="og:site_name" content="allen-b1.github.io">
-	<meta property="og:type" content="website">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0">
-	<link href="style.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-	<header>
-		<h1><a href="index.html">allen-b1</a></h1>
-		<nav>
-			<a href="about.html">About</a> - <a href="projects.html">Projects</a>
-		</nav>
-	</header>
-	<main style="text-align:center">
-		<pre class="green">
-+----+
-| oo |
-+----+</pre>
-		<p class="green">Hello</p>
-	</main>
-</body>
+	<head>
+	
+		<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+	
+		<title>Allen-B1</title>
+		<link rel="stylesheet" href="style.css">
+		<style>
+h2 {
+	text-align: center;
+}
+main, footer {
+	max-width: 720px;
+	margin: auto;
+}
+main {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: auto 192px 128px;
+	background: #d8dee9;
+}
+main > a {
+	padding: 16px;
+	display: inline-block;
+}
+main > a, main > a:visited, main > a:active, main > a:hover {
+	color: #eceff4;
+	text-decoration:none;
+}
+#territ, #worlds {
+	line-height: 160px;
+}
+#territ {
+	background: #bf616a; }
+#worlds {
+	grid-column-end: span 2;
+	background: #a3be8c; }
+#more {
+	grid-column-end: span 3;
+	background: #2e3440;
+	line-height: 96px;
+}
+footer {
+	padding: 16px;
+	grid-column-end: span 3;
+	text-align: center;
+}
+h1 {
+	grid-column-end: span 3;
+}
+		</style>
+	</head>
+	<body>
+		<main>
+			<h1>allen-b1.github.io</h1>
+			<a id="territ">
+				<h2>territ</h2>
+			</a>
+			<a id="worlds">
+				<h2>worlds</h2>
+			</a>
+			<a id="more" href="more.html">
+				<h2>more...</h2>
+			</a>
+			<footer>
+				Colorscheme stolen from <a href="https://nordtheme.com/">Nord</a>.
+			</footer>
+		</main>
+	</body>
 </html>
