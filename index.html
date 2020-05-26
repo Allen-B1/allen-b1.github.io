@@ -17,7 +17,7 @@ main, footer {
 main {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: auto 192px 128px;
+	grid-template-rows: auto 192px 192px 128px;
 	background: #d8dee9;
 }
 main > a {
@@ -28,7 +28,11 @@ main > a, main > a:visited, main > a:active, main > a:hover {
 	color: #eceff4;
 	text-decoration:none;
 }
-#territ, #worlds {
+#news {
+	grid-column-end: span 3;
+	background: #b48ead;
+}
+#territ, #worlds, #news {
 	line-height: 160px;
 }
 #territ {
@@ -54,6 +58,9 @@ h1 {
 	<body>
 		<main>
 			<h1>allen-b1.github.io</h1>
+			<a id="news" href="https://appcenter.elementary.io/com.github.allen-b1.news/" target="_blank">
+				<h2>news</h2>
+			</a>
 			<a id="worlds" href="https://worldss.herokuapp.com/" target="_blank">
 				<h2>worlds</h2>
 			</a>
