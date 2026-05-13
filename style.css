@@ -1,35 +1,67 @@
-h1, h2 {
-	margin-top: 0;
+:root {
+	font-family: 'Roboto', sans-serif;
+	background: #212121;
 }
 
-body {
-	margin-top: 32px;
-	font-size: 12px;
-	font-family: 'Roboto Mono', monospace;
-	background: #eceff4;
-	color: #2e3440;
+.rect {
+	display: flex; flex-direction: column; gap: 8px;
+	color: #fff;
+	text-decoration: none;
+	position: fixed;
+
+	--color: #607D8B;
+	padding: 16px;
+	background: var(--color);
+	border-radius: 8px;
+	width: 512px;
+	user-select: none;
+	cursor: pointer;
+
+	& > :not(a) {
+		z-index: 1;
+		position: relative;
+	}
+
+	h3, p {
+		margin: 0;
+	}
+
+	h3 {
+		text-align: center;
+		a {
+			color: #fff;
+			cursor: pointer;
+		}
+	}
+
+	& > div {
+		display: flex;
+		flex-direction: row;
+		gap: 8px;
+		justify-content: center;
+
+		span {
+			display: inline-block;
+			padding: 4px 8px;
+			background: rgba(0,0,0,0.25);
+			border-radius: 8px;
+		}
+	}
 }
 
 a {
-	color: #81a1c1;
-	text-decoration: none;
+	color: #64B5F6;
 }
-a:active {
-	color: #5e81ac;
-}
-a:visited {
-	color: #b48ead;
-}
-a:hover {
-	text-decoration: underline;
-}
-h1 {
-	background: #81a1c1;
-	margin: 0;
-	padding: 16px;
-	color: #eceff4;
-	text-align: center;
-}
-h1 a, h1 a:visited, h1 a:active, h1 a:hover {
-	color: #eceff4;	
+
+@media screen and (max-width: 1024px) {
+	.rect {
+		position: static;
+	}
+	main {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		padding: 32px;
+		align-items: center;
+	}
 }

@@ -4,75 +4,135 @@
 	
 		<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
 	
-		<title>Allen-B1</title>
+		<title>Allen B</title>
 		<link rel="stylesheet" href="style.css">
-		<style>
-h2 {
-	text-align: center;
-}
-main, footer {
-	max-width: 720px;
-	margin: auto;
-}
-main {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: auto 192px 192px 128px;
-	background: #d8dee9;
-}
-main > a {
-	padding: 16px;
-	display: inline-block;
-}
-main > a, main > a:visited, main > a:active, main > a:hover {
-	color: #eceff4;
-	text-decoration:none;
-}
-#news {
-	grid-column-end: span 3;
-	background: #b48ead;
-}
-#territ, #worlds, #news {
-	line-height: 160px;
-}
-#territ {
-	background: #bf616a; }
-#worlds {
-	grid-column-end: span 2;
-	background: #a3be8c; }
-#more {
-	grid-column-end: span 3;
-	background: #2e3440;
-	line-height: 96px;
-}
-footer {
-	padding: 16px;
-	grid-column-end: span 3;
-	text-align: center;
-}
-h1 {
-	grid-column-end: span 3;
-}
-		</style>
+		<script>
+			const $i = q => document.getElementById  (q);
+			const $  = q => document.querySelector   (q);
+			const $$ = q => document.querySelectorAll(q);
+
+			const rand = (r=0.2) => {
+				const a = Math.random() * 2* Math.PI;
+				return { vx: r*Math.cos(a), vy: r*Math.sin(a)};
+			};
+
+			const rects = {
+				"main": {
+					x: window.innerWidth/2 - 128, y: 64, a: 0,
+					...rand()
+				},
+				"civtiles": {
+					x: window.innerWidth*1/4 -256, y: window.innerHeight / 2- 128,
+					a: 0,
+					...rand()
+				},
+				"radish": {
+					x: window.innerWidth*3/4 - 256, y: window.innerHeight / 2 - 128,
+					a: 0,
+					...rand()
+				}
+			};
+
+
+			let t = Date.now(), dt = 16;
+			function update() {
+				dt = Date.now() - t;
+				t += dt;
+
+				for (let id in rects) {
+					const rect = rects[id];
+					rect.x += rect.vx;
+					rect.y += rect.vy;0
+					rect.vx = Math.sign(rect.vx) * (Math.max(Math.abs(rect.vx) - rect.a, 0));
+					rect.vy = Math.sign(rect.vy) * (Math.max(Math.abs(rect.vy) - rect.a, 0));
+
+					const elem = $i(`rect-${id}`);
+
+					elem.style.top  = rects[id].y + "px";
+					elem.style.left = rects[id].x + "px";
+
+					if (elem.offsetWidth + rect.x > window.innerWidth) {
+						rect.x = window.innerWidth - elem.offsetWidth;
+						rect.vx = -rect.vx;
+					}
+					if (elem.offsetHeight + rect.y > window.innerHeight) {
+						rect.y = window.innerHeight - elem.offsetHeight;
+						rect.vy = -rect.vy;
+					}
+					if (rect.x < 0) {
+						rect.x = 0;
+						rect.vx = -rect.vx;
+					} 
+					if (rect.y < 0) {
+						rect.y = 0;
+						rect.vy = -rect.vy;
+					}
+				}
+
+				requestAnimationFrame(update);
+			}
+
+	
+			function init() {
+				let relX = 0, relY = 0;
+				let active = null;
+
+				let t = Date.now(), dt = 1;
+				window.addEventListener("mousemove", (evt) => {
+					dt = Date.now() - t;
+					t += dt;
+					if (active) {
+						const nx = evt.clientX + relX,
+							  ny = evt.clientY + relY;
+						const dx = nx - rects[active].x,
+							  dy = ny - rects[active].y;
+						rects[active].x = nx;
+						rects[active].y = ny;
+						rects[active].vx = dx/dt;
+						rects[active].vy = dy/dt;
+						console.log(evt.mouseX, relX);
+					}
+				});
+				window.addEventListener("mouseup", () => {
+					active = null;
+				});
+
+				for (let id in rects) {
+					const elem = $i(`rect-${id}`);
+
+					elem.addEventListener("mousedown", (evt) => {
+						active = id;
+						relX = rects[id].x - evt.clientX;
+						relY = rects[id].y - evt.clientY;
+					});
+				}
+			}
+
+			window.addEventListener("load", () => {
+				init();
+				update();
+			});
+		</script>
 	</head>
 	<body>
 		<main>
-			<h1>allen-b1.github.io</h1>
-			<a id="news" href="https://appcenter.elementary.io/com.github.allen-b1.news/" target="_blank">
-				<h2>news</h2>
-			</a>
-			<a id="worlds" href="https://squaresg.herokuapp.com/" target="_blank">
-				<h2>squares</h2>
-			</a>
-			<a id="territ" href="https://github.com/allen-b1/territ" target="_blank">
-				<h2>territ</h2>
-			</a>
-			<a id="more" href="more.html">
-				<h2>more...</h2>
-			</a>
-			<footer>
-				Colorscheme stolen from <a href="https://nordtheme.com/">Nord</a>.
-			</footer>
+			<div id="rect-main" class="rect" style="--color:#3F51B5; width: 256px; text-align: center;">
+				<h3>Allen B</h3>
+				<p>Software developer.</p>
+				<p><a href="https://github.com/allen-b1" target="_blank">GitHub</a></p>
+			</div>
+			<div id="rect-civtiles" class="rect" style="--color:#43A047">
+				<h3><a href="https://civtiles-ohio.onrender.com/" target="_blank">civtiles</a></h3>
+				<div><span>typescript</span> <span>svelte</span></div>
+				<p>A quick, 15-minute RTS game with <a href="https://generals.io" target="_blank">generals.io</a>-inspired combat mechanics.</p>
+			</div>
+			<div id="rect-radish" class="rect" style="--color:#D81B60">
+				<h3><a href="https://github.com/allen-b1/radish" target="_blank">radish</a></h3>
+				<div><span>rust</span> <span>typescript</span> <span>svelte</span></div>
+				<p>Website to play blitz diplomacy with a Rocket-based backend and Svelte frontend. Uses a <a target="_blank" href="https://docs.rs/radip/latest/radip/">diplomacy adjudicator written by me</a> based on the 
+					<a href="https://diplom.org/Zine/S2009M/Kruijswijk/DipMath_Chp4.htm" target="_blank">partial information</a> algorithm.</p>
+				</div>
+
 		</main>
 	</body>
 </html>
